@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nerissa Xue — Marketing Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:  #ede5d4;
+      --paper:  #e0d6c0;
+      --tan:    #d4c9ae;
+      --red:    #be2a18;
+      --red2:   #a02010;
+      --black:  #1a1818;
+      --dark:   #2e2b28;
+      --muted:  #7a7060;
+      --white:  #faf6ef;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ── PAPER TEXTURE ── */
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(0deg, transparent 0, transparent 19px, rgba(26,24,24,0.045) 20px),
+        repeating-linear-gradient(90deg, transparent 0, transparent 59px, rgba(26,24,24,0.018) 60px);
+    }
+
+    /* Scattered newsprint text in background */
+    body::after {
+      content: 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit';
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+      font-family: 'Times New Roman', serif;
+      font-size: 7.5px;
+      line-height: 1.45;
+      color: rgba(26,24,24,0.06);
+      word-spacing: 3px;
+      letter-spacing: 0.5px;
+      overflow: hidden;
+    }
+
+    section, nav, footer { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 3%;
+      background: var(--black);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.45rem;
+      color: var(--cream);
+      letter-spacing: 0.12em;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Bebas Neue', sans-serif;
+      color: rgba(237,229,212,0.6);
+      text-decoration: none;
+      font-size: 0.95rem;
+      letter-spacing: 0.14em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--cream) !important;
+      padding: 0.35rem 1.1rem !important;
+      letter-spacing: 0.1em !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 58% 42%;
+      padding-top: 3.5rem;
+      overflow: hidden;
+    }
+
+    /* Left panel */
+    .hero-left {
+      background: var(--cream);
+      padding: 5% 5% 5% 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    /* Crumpled paper overlay on left */
+    .hero-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 40%, rgba(255,255,255,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(0,0,0,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Decorative diagonal text behind heading */
+    .hero-bg-text {
+      position: absolute;
+      top: 30%;
+      left: -2%;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20vw;
+      color: rgba(26,24,24,0.04);
+      line-height: 1;
+      pointer-events: none;
+      white-space: nowrap;
+      transform: rotate(-8deg);
+      user-select: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 28px; height: 2px; background: var(--red);
+    }
+
+    .hero-type {
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .type-red {
+      display: block;
+      font-family: 'Permanent Marker', cursive;
+      color: var(--red);
+      font-size: clamp(3.5rem, 8.5vw, 7rem);
+      line-height: 0.95;
+      transform: rotate(-1.5deg);
+      transform-origin: left center;
+    }
+    .type-black {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--black);
+      font-size: clamp(5rem, 12vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: -1px;
+    }
+    .type-outline {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.08em;
+      -webkit-text-stroke: 2px var(--black);
+      color: transparent;
+    }
+
+    .hero-divider {
+      display: flex; align-items: center; gap: 0.8rem;
+      margin: 1rem 0;
+    }
+    .hero-divider-line { flex: 1; height: 1px; background: var(--tan); }
+    .hero-divider-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .hero-intro {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--dark);
+      max-width: 520px;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--red);
+      padding-left: 1rem;
+    }
+
+    .hero-contacts {
+      display: flex; flex-wrap: wrap; gap: 0.65rem;
+      margin-bottom: 1.8rem;
+    }
+    .contact-chip {
+      display: flex; align-items: center; gap: 0.45rem;
+      background: var(--white);
+      border: 1.5px solid var(--tan);
+      border-radius: 3px;
+      padding: 0.38rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .contact-chip:hover { border-color: var(--red); transform: translateY(-1px); }
+    .contact-chip svg { width: 13px; height: 13px; fill: var(--red); }
+
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .btn-fill {
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-fill:hover { background: var(--red2); transform: translateY(-2px); }
+    .btn-stroke {
+      background: transparent;
+      color: var(--black);
+      border: 2px solid var(--black);
+      padding: 0.73rem 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-stroke:hover { background: var(--black); color: var(--cream); transform: translateY(-2px); }
+
+    /* Right panel */
+    .hero-right {
+      background: var(--tan);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+    /* Right panel dot pattern */
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(26,24,24,0.12) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+
+    /* Bee SVG decoration */
+    .bee-deco {
+      position: absolute;
+      top: 5%;
+      right: 6%;
+      width: 90px;
+      transform: rotate(15deg);
+      z-index: 2;
+    }
+
+    /* Dotted cross decorations */
+    .deco-cross {
+      position: absolute;
+      color: rgba(26,24,24,0.25);
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* Photo treatment */
+    .photo-sticker {
+      position: relative;
+      z-index: 2;
+      width: 78%;
+      max-width: 380px;
+      margin: 0 auto;
+      align-self: flex-end;
+      margin-bottom: 0;
+    }
+    .photo-duotone-wrap {
+      background: var(--red);
+      display: block;
+      line-height: 0;
+      border: 8px solid var(--white);
+      outline: 2px solid rgba(26,24,24,0.12);
+      box-shadow: -6px 6px 0 rgba(26,24,24,0.18), 6px 0 0 rgba(26,24,24,0.06);
+      transform: rotate(1.5deg);
+      transform-origin: bottom center;
+    }
+    .hero-photo {
+      width: 100%;
+      display: block;
+      filter: grayscale(100%) contrast(1.05) brightness(0.88);
+      mix-blend-mode: multiply;
+    }
+
+    /* Tape strips on photo */
+    .tape {
+      position: absolute;
+      background: rgba(255,255,245,0.65);
+      border: 1px solid rgba(220,210,180,0.6);
+      height: 22px;
+      z-index: 3;
+    }
+    .tape-tl { width: 70px; top: -8px; left: 15%; transform: rotate(-6deg); }
+    .tape-tr { width: 55px; top: -6px; right: 10%; transform: rotate(8deg); }
+
+    /* Hero stamp */
+    .hero-stamp {
+      position: absolute;
+      bottom: 8%;
+      left: 6%;
+      width: 80px; height: 80px;
+      border: 3px solid var(--red);
+      border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transform: rotate(-18deg);
+      z-index: 3;
+    }
+    .hero-stamp-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--red);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .hero-stamp::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      border: 1px solid var(--red);
+    }
+
+    /* ── STATS ── */
+    #stats {
+      background: var(--black);
+      padding: 3.5rem 5%;
+      position: relative;
+    }
+    /* Torn top edge */
+    #stats::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -18px; left: 0; right: 0;
+      height: 20px;
+      background: var(--black);
+      clip-path: polygon(0 100%, 1% 30%, 3% 80%, 5% 20%, 8% 70%, 11% 15%, 14% 60%, 17% 25%, 20% 75%, 23% 10%, 26% 65%, 29% 30%, 32% 80%, 35% 20%, 38% 70%, 41% 15%, 44% 60%, 47% 30%, 50% 85%, 53% 20%, 56% 65%, 59% 30%, 62% 80%, 65% 15%, 68% 60%, 71% 25%, 74% 75%, 77% 10%, 80% 65%, 83% 30%, 86% 80%, 89% 20%, 92% 70%, 95% 25%, 97% 60%, 100% 30%, 100% 100%);
+    }
+    .stats-label-top {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: rgba(237,229,212,0.3);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 1rem 1rem;
+      border-right: 1px solid rgba(237,229,212,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-suffix { font-size: 0.7em; }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(237,229,212,0.45);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 5rem 5%; }
+    .section-header { margin-bottom: 3rem; }
+    .section-header-inner {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .section-word-red {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      color: var(--red);
+      line-height: 1;
+    }
+    .section-word-black {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      color: var(--black);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .section-rule {
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .rule-line { flex: 1; height: 2px; background: var(--black); }
+    .rule-square {
+      width: 8px; height: 8px;
+      background: var(--red);
+      transform: rotate(45deg);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--paper); }
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .radar-outer {
+      background: var(--white);
+      border: 1.5px solid rgba(26,24,24,0.12);
+      padding: 2rem;
+      box-shadow: 4px 4px 0 rgba(26,24,24,0.12);
+      position: relative;
+    }
+    .radar-outer::before {
+      content: 'SKILL RADAR';
+      position: absolute;
+      top: -12px; left: 16px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      padding: 2px 10px;
+    }
+    #radarCanvas { width: 100%; max-width: 360px; display: block; margin: 0 auto; }
+
+    .skills-right h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.4rem;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 0.5rem;
+    }
+    .skill-category { margin-bottom: 1.4rem; }
+    .skill-cat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-cat-label::after { content: ''; flex: 1; height: 1px; background: rgba(26,24,24,0.12); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag {
+      background: transparent;
+      border: 1.5px solid rgba(26,24,24,0.25);
+      color: var(--dark);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.28rem 0.7rem;
+      cursor: default;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .skill-tag:hover { background: var(--black); color: var(--cream); border-color: var(--black); }
+
+    /* ── TIMELINE ── */
+    #timeline { background: var(--cream); }
+    .timeline-container { max-width: 1000px; margin: 0 auto; }
+    .timeline-hint {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .timeline-slider-wrap { position: relative; padding: 0 0.5rem; margin-bottom: 2.5rem; }
+    .timeline-track {
+      position: relative;
+      height: 3px;
+      background: rgba(26,24,24,0.15);
+      cursor: pointer;
+    }
+    .timeline-fill {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: var(--red);
+      transition: width 0.15s;
+    }
+    .timeline-handle {
+      position: absolute; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px; height: 20px;
+      background: var(--red);
+      border: 3px solid var(--white);
+      outline: 1.5px solid var(--red);
+      cursor: grab;
+      z-index: 2;
+      transition: transform 0.1s;
+    }
+    .timeline-handle:active { cursor: grabbing; transform: translate(-50%, -50%) scale(1.2); }
+    .timeline-dots { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); pointer-events: none; }
+    .timeline-dot {
+      position: absolute; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px; height: 10px;
+      background: var(--white);
+      border: 2px solid rgba(26,24,24,0.3);
+      cursor: pointer; pointer-events: all;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .timeline-dot.active, .timeline-dot:hover {
+      background: var(--red);
+      border-color: var(--red);
+      transform: translate(-50%, -50%) scale(1.25);
+    }
+    .timeline-years {
+      display: flex; justify-content: space-between;
+      margin-top: 0.9rem; padding: 0 2px;
+    }
+    .timeline-year-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: rgba(26,24,24,0.3);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+    .timeline-year-label.active { color: var(--red); }
+
+    .timeline-card {
+      background: var(--white);
+      border: 1.5px solid rgba(26,24,24,0.12);
+      padding: 2rem 2.5rem;
+      min-height: 180px;
+      box-shadow: 4px 4px 0 rgba(26,24,24,0.1);
+      position: relative;
+      transition: opacity 0.3s;
+    }
+    .timeline-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: var(--red);
+    }
+    .timeline-card-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-card-role {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      margin-bottom: 0.15rem;
+      line-height: 1.1;
+    }
+    .timeline-card-company {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .timeline-card-desc { font-size: 0.87rem; color: var(--dark); line-height: 1.7; }
+    .timeline-card-highlight {
+      display: inline-block;
+      margin-top: 0.75rem;
+      background: rgba(190,42,24,0.08);
+      border: 1px solid rgba(190,42,24,0.2);
+      color: var(--red);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.28rem 0.75rem;
+      font-style: italic;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--paper); }
+    .exp-grid { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; }
+    .exp-card {
+      background: var(--white);
+      border: 1.5px solid rgba(26,24,24,0.1);
+      padding: 2rem 2.2rem;
+      position: relative;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .exp-card:hover { transform: translateX(4px) translateY(-2px); box-shadow: -4px 4px 0 rgba(26,24,24,0.12); }
+    .exp-card-num {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: rgba(26,24,24,0.06);
+      line-height: 1;
+      user-select: none;
+    }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+    .exp-company {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+    }
+    .exp-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1.5px solid var(--red);
+      padding: 0.2rem 0.65rem;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+    .exp-role {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.9rem;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .exp-bullets li {
+      font-size: 0.87rem;
+      color: var(--dark);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.65;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute; left: 0;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .exp-highlight {
+      display: block;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--dark);
+      font-style: italic;
+      padding: 0.5rem 0.9rem;
+      background: rgba(190,42,24,0.05);
+      border-left: 3px solid var(--red);
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--cream); }
+    .edu-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .edu-card {
+      background: var(--white);
+      border: 1.5px solid rgba(26,24,24,0.1);
+      padding: 1.5rem;
+      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .edu-card:hover { transform: translateY(-3px); box-shadow: 0 6px 0 rgba(26,24,24,0.1); }
+    .edu-stamp-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--red);
+      margin-bottom: 0.8rem;
+    }
+    .edu-institution {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      color: var(--black);
+      margin-bottom: 0.3rem;
+    }
+    .edu-degree { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 4rem 5% 2.5rem;
+      position: relative;
+      text-align: center;
+    }
+    footer::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -18px; left: 0; right: 0;
+      height: 20px;
+      background: var(--black);
+      clip-path: polygon(0 100%, 1.5% 40%, 4% 80%, 6.5% 20%, 9% 65%, 12% 30%, 15% 75%, 18% 15%, 21% 60%, 24% 35%, 27% 80%, 30% 20%, 33% 65%, 36% 30%, 39% 75%, 42% 10%, 45% 55%, 48% 30%, 51% 85%, 54% 20%, 57% 60%, 60% 35%, 63% 80%, 66% 15%, 69% 60%, 72% 30%, 75% 75%, 78% 15%, 81% 65%, 84% 30%, 87% 75%, 90% 15%, 93% 60%, 96% 35%, 98.5% 65%, 100% 35%, 100% 100%);
+    }
+    .footer-big {
+      font-family: 'Permanent Marker', cursive;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+    .footer-big span { color: var(--red); }
+    .footer-sub {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: rgba(237,229,212,0.35);
+      margin-bottom: 2rem;
+    }
+    .footer-contacts {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .footer-chip {
+      display: flex; align-items: center; gap: 0.45rem;
+      background: rgba(237,229,212,0.07);
+      border: 1px solid rgba(237,229,212,0.15);
+      color: rgba(237,229,212,0.7);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+    .footer-chip svg { width: 13px; height: 13px; fill: var(--red); }
+    .footer-chip:hover { background: rgba(237,229,212,0.12); color: var(--cream); }
+    .footer-legal {
+      font-size: 0.7rem;
+      color: rgba(237,229,212,0.2);
+      letter-spacing: 0.06em;
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 6rem 6% 3rem; text-align: left; }
+      .hero-bg-text { display: none; }
+      .hero-right { min-height: 55vw; }
+      .photo-sticker { width: 60%; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .skills-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .edu-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0.75rem 4%; }
+      .nav-links { display: none; }
+      section { padding: 3rem 4%; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat-item { border-right: none !important; }
+      .timeline-card { padding: 1.4rem 1.2rem; }
+      .exp-card { padding: 1.3rem 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-logo">NX<span>.</span></span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#timeline">Career</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="mailto:nerissa.xue@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-bg-text">NX</div>
+
+    <div class="hero-eyebrow">Singapore &nbsp;·&nbsp; Marketing Designer</div>
+
+    <div class="hero-type">
+      <span class="type-red">Nerissa</span>
+      <span class="type-black">XUE</span>
+      <span class="type-outline">Marketing Designer</span>
+    </div>
+
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-dot"></div>
+      <div class="hero-divider-line"></div>
+    </div>
+
+    <p class="hero-intro">
+      Marketing-driven designer with <strong>10+ years</strong> transforming brand strategies into
+      high-impact visual identities across print, packaging &amp; digital. Human creativity
+      amplified by AI — 30% faster without sacrificing quality.
+    </p>
+
+    <div class="hero-contacts">
+      <a href="mailto:nerissa.xue@gmail.com" class="contact-chip">
+        <svg viewBox="0 0 20 20"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h13A1.5 1.5 0 0 1 18 5.5v.27l-8 5.03-8-5.03V5.5zm0 2.08 7.44 4.68a1 1 0 0 0 1.12 0L18 7.58V14.5A1.5 1.5 0 0 1 16.5 16h-13A1.5 1.5 0 0 1 2 14.5V7.58z"/></svg>
+        nerissa.xue@gmail.com
+      </a>
+      <a href="tel:+6591916148" class="contact-chip">
+        <svg viewBox="0 0 20 20"><path d="M3.33 1h3.06a1 1 0 0 1 .97.76l.88 3.53a1 1 0 0 1-.29 1l-1.5 1.34A11.05 11.05 0 0 0 11.4 12.5l1.34-1.5a1 1 0 0 1 1-.29l3.53.88a1 1 0 0 1 .76.97V16.5A1.5 1.5 0 0 1 16.5 18C8.49 18 2 11.51 2 3.5A1.5 1.5 0 0 1 3.33 1z"/></svg>
+        +65 9191 6148
+      </a>
+      <a href="https://bit.ly/nx_portfolio" target="_blank" class="contact-chip">
+        <svg viewBox="0 0 20 20"><path d="M11 3a1 1 0 0 0-2 0v1H7a2 2 0 0 0-2 2v2h10V6a2 2 0 0 0-2-2h-2V3zM5 10v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-5H5z"/></svg>
+        View Portfolio
+      </a>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="mailto:nerissa.xue@gmail.com" class="btn-fill">Get in Touch</a>
+      <a href="#experience" class="btn-stroke">See My Work</a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="hero-right">
+
+    <!-- Bee SVG -->
+    <div class="bee-deco">
+      <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wings -->
+        <ellipse cx="35" cy="22" rx="28" ry="14" fill="rgba(26,24,24,0.18)" transform="rotate(-20 35 22)"/>
+        <ellipse cx="65" cy="20" rx="24" ry="12" fill="rgba(26,24,24,0.15)" transform="rotate(20 65 20)"/>
+        <ellipse cx="30" cy="38" rx="22" ry="10" fill="rgba(26,24,24,0.12)" transform="rotate(-15 30 38)"/>
+        <ellipse cx="68" cy="36" rx="20" ry="9" fill="rgba(26,24,24,0.10)" transform="rotate(15 68 36)"/>
+        <!-- Body -->
+        <ellipse cx="50" cy="52" rx="16" ry="24" fill="#1a1818"/>
+        <!-- Stripes -->
+        <rect x="35" y="45" width="30" height="6" rx="2" fill="#f5c030" opacity="0.9"/>
+        <rect x="35" y="56" width="30" height="6" rx="2" fill="#f5c030" opacity="0.9"/>
+        <!-- Head -->
+        <circle cx="50" cy="30" r="12" fill="#1a1818"/>
+        <!-- Eyes -->
+        <circle cx="45" cy="28" r="3" fill="var(--red)"/>
+        <circle cx="55" cy="28" r="3" fill="var(--red)"/>
+        <circle cx="46" cy="27" r="1.2" fill="#fff"/>
+        <circle cx="56" cy="27" r="1.2" fill="#fff"/>
+        <!-- Antennae -->
+        <line x1="45" y1="19" x2="38" y2="8" stroke="#1a1818" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="55" y1="19" x2="62" y2="8" stroke="#1a1818" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="38" cy="7" r="2.5" fill="#1a1818"/>
+        <circle cx="62" cy="7" r="2.5" fill="#1a1818"/>
+        <!-- Stinger -->
+        <polygon points="44,76 56,76 50,84" fill="#1a1818"/>
+      </svg>
+    </div>
+
+    <!-- Deco crosses -->
+    <span class="deco-cross" style="top:20%;left:8%;font-size:1.2rem;color:rgba(26,24,24,0.18)">✕</span>
+    <span class="deco-cross" style="top:55%;left:5%;font-size:0.9rem;color:rgba(26,24,24,0.12)">✕</span>
+    <span class="deco-cross" style="bottom:20%;right:8%;font-size:1.5rem;color:rgba(26,24,24,0.15)">+</span>
+
+    <!-- Stamp -->
+    <div class="hero-stamp">
+      <span class="hero-stamp-text">OPEN TO<br/>OPPS<br/>· 2026 ·</span>
+    </div>
+
+    <!-- Photo -->
+    <div class="photo-sticker">
+      <div class="tape tape-tl"></div>
+      <div class="tape tape-tr"></div>
+      <div class="photo-duotone-wrap">
+        <img src="Nerissa Corporate Headshot.jpg" alt="Nerissa Xue" class="hero-photo" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<section id="stats">
+  <div class="stats-label-top">— BY THE NUMBERS —</div>
+  <div class="stats-grid">
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count" data-target="10">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count" data-target="5">0</span></div>
+      <div class="stat-label">Industries Spanned</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count" data-target="30">0</span><span class="stat-suffix">%</span></div>
+      <div class="stat-label">Faster Turnaround via AI</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number"><span class="count" data-target="3">0</span></div>
+      <div class="stat-label">Brands Built from Scratch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-header reveal">
+    <div class="section-header-inner">
+      <span class="section-word-red">skill</span>
+      <span class="section-word-black">SET</span>
+    </div>
+    <div class="section-rule">
+      <div class="rule-line"></div>
+      <div class="rule-square"></div>
+    </div>
+  </div>
+  <div class="skills-layout">
+    <div class="radar-outer reveal">
+      <canvas id="radarCanvas" width="400" height="400"></canvas>
+    </div>
+    <div class="skills-right reveal">
+      <h3>Full Toolkit</h3>
+      <div class="skill-category">
+        <div class="skill-cat-label">Design Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Photoshop</span>
+          <span class="skill-tag">Illustrator</span>
+          <span class="skill-tag">InDesign</span>
+          <span class="skill-tag">Premiere Pro</span>
+          <span class="skill-tag">After Effects</span>
+          <span class="skill-tag">Figma</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-label">Digital &amp; Marketing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Shopify</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Klaviyo</span>
+          <span class="skill-tag">Mailchimp</span>
+          <span class="skill-tag">Wix Studio</span>
+          <span class="skill-tag">eDM Campaigns</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-label">AI &amp; Innovation</div>
+        <div class="skill-tags">
+          <span class="skill-tag">ChatGPT / GenAI</span>
+          <span class="skill-tag">AI Image Generation</span>
+          <span class="skill-tag">Workflow Automation</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-label">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">English (Fluent)</span>
+          <span class="skill-tag">Mandarin (Intermediate)</span>
+          <span class="skill-tag">Japanese (Basic)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section id="timeline">
+  <div class="section-header reveal">
+    <div class="section-header-inner">
+      <span class="section-word-red">career</span>
+      <span class="section-word-black">JOURNEY</span>
+    </div>
+    <div class="section-rule">
+      <div class="rule-line"></div>
+      <div class="rule-square"></div>
+    </div>
+  </div>
+  <div class="timeline-container">
+    <div class="timeline-hint reveal">
+      ← Drag the slider or click a year to explore →
+    </div>
+    <div class="timeline-slider-wrap reveal">
+      <div class="timeline-track" id="timelineTrack">
+        <div class="timeline-fill" id="timelineFill"></div>
+        <div class="timeline-dots" id="timelineDots"></div>
+        <div class="timeline-handle" id="timelineHandle"></div>
+      </div>
+      <div class="timeline-years" id="timelineYears"></div>
+    </div>
+    <div class="timeline-card reveal" id="timelineCard">
+      <div class="timeline-card-year" id="tcYear"></div>
+      <div class="timeline-card-role" id="tcRole"></div>
+      <div class="timeline-card-company" id="tcCompany"></div>
+      <div class="timeline-card-desc" id="tcDesc"></div>
+      <span class="timeline-card-highlight" id="tcHighlight"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-header reveal">
+    <div class="section-header-inner">
+      <span class="section-word-red">notable</span>
+      <span class="section-word-black">EXPERIENCE</span>
+    </div>
+    <div class="section-rule">
+      <div class="rule-line"></div>
+      <div class="rule-square"></div>
+    </div>
+  </div>
+  <div class="exp-grid">
+
+    <div class="exp-card reveal">
+      <div class="exp-card-num">01</div>
+      <div class="exp-header">
+        <div class="exp-company">Monde Nissin Singapore</div>
+        <div class="exp-badge">Jan 2023 – Present</div>
+      </div>
+      <div class="exp-role">Senior Marketing &amp; Design Specialist</div>
+      <ul class="exp-bullets">
+        <li>Led brand identity development for plant-based brand &amp;SO and snack brand Popbebe — visual system, colour palette, typography, and key applications.</li>
+        <li>Produced packaging across multiple product lines, ensuring brand alignment, shelf standout, and regulatory compliance across markets.</li>
+        <li>Integrated AI tools (ChatGPT) into ideation and visualisation workflows, reducing concept turnaround by <strong>30%</strong>.</li>
+        <li>Managed e-commerce content on Shopify; executed eDM campaigns via Klaviyo.</li>
+        <li>Mentored junior designer to ensure timely, consistent brand execution.</li>
+      </ul>
+      <span class="exp-highlight">★ Built Popbebe's website entirely in-house using Wix Studio</span>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-card-num">02</div>
+      <div class="exp-header">
+        <div class="exp-company">Shopee Singapore Pte Ltd</div>
+        <div class="exp-badge">Oct 2021 – Sep 2022</div>
+      </div>
+      <div class="exp-role">Senior Associate, Graphic Design (People Team)</div>
+      <ul class="exp-bullets">
+        <li>Designed internal engagement collaterals and merchandise for <strong>3,000+ employees</strong> in the Singapore office.</li>
+        <li>Created infographics and visuals to simplify complex HR communications at scale.</li>
+        <li>Maintained rigorous adherence to Shopee's brand guidelines across all touchpoints.</li>
+      </ul>
+      <span class="exp-highlight">★ UX planning for a working-parents marketplace platform</span>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-card-num">03</div>
+      <div class="exp-header">
+        <div class="exp-company">Singapore Repertory Theatre</div>
+        <div class="exp-badge">Jan 2017 – Oct 2021</div>
+      </div>
+      <div class="exp-role">Marketing Executive</div>
+      <ul class="exp-bullets">
+        <li>Brought creative production in-house, reallocating <strong>10% of outsourced costs</strong> into direct marketing efforts.</li>
+        <li>Designed key visuals, digital and print collateral, and videos for each production to drive ticket sales.</li>
+        <li>Managed end-to-end campaign lifecycles including budgeting, coordination, execution, and performance tracking.</li>
+      </ul>
+      <span class="exp-highlight">★ Redesigned children's theatre programme books into fold-out posters</span>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-card-num">04</div>
+      <div class="exp-header">
+        <div class="exp-company">British High Commission Singapore</div>
+        <div class="exp-badge">Jul – Dec 2016</div>
+      </div>
+      <div class="exp-role">Regional Communications Coordinator (Contract)</div>
+      <ul class="exp-bullets">
+        <li>Developed and designed a regional newsletter aggregating updates from Southeast Asian posts.</li>
+        <li>Created visual assets for regional public awareness campaigns.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal">
+      <div class="exp-card-num">05</div>
+      <div class="exp-header">
+        <div class="exp-company">Providend Ltd</div>
+        <div class="exp-badge">Jan 2010 – Mar 2015</div>
+      </div>
+      <div class="exp-role">Senior Executive, Brand Management</div>
+      <ul class="exp-bullets">
+        <li>Led design and production of brochures and client communications across financial offerings.</li>
+        <li>Developed consumer-facing content and infographics with subject matter experts.</li>
+        <li>Executed annual marketing plans and organised <strong>~12 client events per year</strong>.</li>
+      </ul>
+      <span class="exp-highlight">★ Contributed to brand identity &amp; website for a new insurance comparison portal</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="section-header reveal">
+    <div class="section-header-inner">
+      <span class="section-word-red">education</span>
+      <span class="section-word-black">&amp; DEV</span>
+    </div>
+    <div class="section-rule">
+      <div class="rule-line"></div>
+      <div class="rule-square"></div>
+    </div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-stamp-num">01 — DEGREE</div>
+      <div class="edu-institution">Nanyang Technological University</div>
+      <div class="edu-degree">B.A. (Hons) Communication Studies, 2nd Upper<br/>Public &amp; Promotional Communication<br/>Graphics Editor, <em>The Nanyang Chronicle</em></div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-stamp-num">02 — DIPLOMA</div>
+      <div class="edu-institution">3DSense Media School</div>
+      <div class="edu-degree">Diploma in Digital Design</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-stamp-num">03 — EXECUTIVE ED</div>
+      <div class="edu-institution">NUS Business School</div>
+      <div class="edu-degree">Digital Marketing: Strategies, Models &amp; Frameworks</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-stamp-num">04 — CERTIFICATION</div>
+      <div class="edu-institution">NTUC Learning Hub</div>
+      <div class="edu-degree">AI Tools for Creative Professionals<br/>Generative AI in design, storytelling &amp; workflow efficiency</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-big">Nerissa <span>Xue</span></div>
+  <div class="footer-sub">Marketing Designer · Singapore · Open to creative leadership roles</div>
+  <div class="footer-contacts">
+    <a href="mailto:nerissa.xue@gmail.com" class="footer-chip">
+      <svg viewBox="0 0 20 20"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h13A1.5 1.5 0 0 1 18 5.5v.27l-8 5.03-8-5.03V5.5zm0 2.08 7.44 4.68a1 1 0 0 0 1.12 0L18 7.58V14.5A1.5 1.5 0 0 1 16.5 16h-13A1.5 1.5 0 0 1 2 14.5V7.58z"/></svg>
+      nerissa.xue@gmail.com
+    </a>
+    <a href="tel:+6591916148" class="footer-chip">
+      <svg viewBox="0 0 20 20"><path d="M3.33 1h3.06a1 1 0 0 1 .97.76l.88 3.53a1 1 0 0 1-.29 1l-1.5 1.34A11.05 11.05 0 0 0 11.4 12.5l1.34-1.5a1 1 0 0 1 1-.29l3.53.88a1 1 0 0 1 .76.97V16.5A1.5 1.5 0 0 1 16.5 18C8.49 18 2 11.51 2 3.5A1.5 1.5 0 0 1 3.33 1z"/></svg>
+      +65 9191 6148
+    </a>
+    <a href="https://bit.ly/nx_portfolio" target="_blank" class="footer-chip">
+      <svg viewBox="0 0 20 20"><path d="M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2zm-1 11H7V9h2v4zm0-5H7V6h2v2zm4 5h-2V9h2v4zm0-5h-2V6h2v2z"/></svg>
+      Portfolio
+    </a>
+  </div>
+  <div class="footer-legal">© 2026 Nerissa Xue. All rights reserved.</div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      revObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => revObs.observe(el));
+
+// ── 1. STATS COUNT-UP ──
+let statsTriggered = false;
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const start = performance.now();
+  const dur = 1500;
+  (function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.floor(ease * target);
+    if (t < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  })(start);
+}
+const statsObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !statsTriggered) {
+    statsTriggered = true;
+    document.querySelectorAll('.count').forEach((c, i) => setTimeout(() => animateCount(c), i * 200));
+  }
+}, { threshold: 0.3 });
+statsObs.observe(document.getElementById('stats'));
+
+// ── 2. RADAR CHART ──
+const canvas = document.getElementById('radarCanvas');
+const ctx = canvas.getContext('2d');
+const SKILLS = [
+  { label: 'Brand & Visual Design', value: 0.95 },
+  { label: 'Print & Packaging',     value: 0.90 },
+  { label: 'Digital Marketing',     value: 0.85 },
+  { label: 'AI & Innovation',       value: 0.82 },
+  { label: 'E-commerce & CMS',      value: 0.75 },
+  { label: 'Motion & Video',        value: 0.70 },
+];
+const N = SKILLS.length, cx2 = 200, cy2 = 200, R = 140;
+let prog = 0, running = false;
+
+function drawRadar(p) {
+  ctx.clearRect(0, 0, 400, 400);
+  // Grid rings
+  for (let r = 1; r <= 5; r++) {
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const a = (i / N) * 2 * Math.PI - Math.PI / 2;
+      const rr = (r / 5) * R;
+      i === 0 ? ctx.moveTo(cx2 + rr * Math.cos(a), cy2 + rr * Math.sin(a))
+              : ctx.lineTo(cx2 + rr * Math.cos(a), cy2 + rr * Math.sin(a));
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(26,24,24,0.1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  // Spokes
+  for (let i = 0; i < N; i++) {
+    const a = (i / N) * 2 * Math.PI - Math.PI / 2;
+    ctx.beginPath();
+    ctx.moveTo(cx2, cy2);
+    ctx.lineTo(cx2 + R * Math.cos(a), cy2 + R * Math.sin(a));
+    ctx.strokeStyle = 'rgba(26,24,24,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  // Polygon
+  const pts = SKILLS.map((s, i) => {
+    const a = (i / N) * 2 * Math.PI - Math.PI / 2;
+    return [cx2 + s.value * R * p * Math.cos(a), cy2 + s.value * R * p * Math.sin(a)];
+  });
+  ctx.beginPath();
+  pts.forEach(([x, y], i) => i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y));
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(190,42,24,0.13)';
+  ctx.fill();
+  ctx.strokeStyle = '#be2a18';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // Dots
+  pts.forEach(([x, y]) => {
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#be2a18';
+    ctx.fill();
+  });
+  // Labels
+  ctx.globalAlpha = Math.min(p * 1.8, 1);
+  SKILLS.forEach((s, i) => {
+    const a = (i / N) * 2 * Math.PI - Math.PI / 2;
+    const lr = R + 30;
+    const lx = cx2 + lr * Math.cos(a);
+    const ly = cy2 + lr * Math.sin(a);
+    ctx.fillStyle = '#1a1818';
+    ctx.font = '600 10.5px DM Sans, sans-serif';
+    ctx.textAlign = lx < cx2 - 10 ? 'right' : lx > cx2 + 10 ? 'left' : 'center';
+    ctx.textBaseline = ly < cy2 - 10 ? 'bottom' : ly > cy2 + 10 ? 'top' : 'middle';
+    ctx.fillText(s.label, lx, ly);
+    const offset = ly < cy2 - 10 ? -13 : 13;
+    ctx.font = '700 10px DM Sans, sans-serif';
+    ctx.fillStyle = '#be2a18';
+    ctx.fillText(Math.round(s.value * 100 * p) + '%', lx, ly + offset);
+  });
+  ctx.globalAlpha = 1;
+}
+
+drawRadar(0);
+const radarObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !running) {
+    running = true;
+    (function animate() {
+      if (prog >= 1) { running = false; return; }
+      prog = Math.min(prog + 0.016, 1);
+      drawRadar(prog);
+      requestAnimationFrame(animate);
+    })();
+    radarObs.unobserve(canvas);
+  }
+}, { threshold: 0.3 });
+radarObs.observe(canvas);
+
+// ── 3. CAREER TIMELINE ──
+const EVENTS = [
+  { year: 2010, role: 'Senior Executive, Brand Management', company: 'Providend Ltd', desc: 'Launched career in financial services marketing — leading brochure design, client communications, and ~12 annual client events. Built brand training programmes for new hires.', highlight: '★ Contributed to brand identity for a new insurance comparison portal' },
+  { year: 2016, role: 'Regional Communications Coordinator', company: 'British High Commission Singapore', desc: 'Contract role designing a regional newsletter for Southeast Asian diplomatic posts and creating visual assets for public awareness campaigns.', highlight: null },
+  { year: 2017, role: 'Marketing Executive', company: 'Singapore Repertory Theatre', desc: 'Brought creative production in-house (saving 10% in outsourcing costs). Designed campaign visuals for every production and managed end-to-end marketing lifecycles over 4+ years.', highlight: '★ Redesigned children\'s theatre programme books into fold-out posters' },
+  { year: 2021, role: 'Senior Associate, Graphic Design', company: 'Shopee Singapore Pte Ltd', desc: 'Designed internal engagement collaterals and merchandise for 3,000+ employees. Created infographics to simplify complex HR communications at scale.', highlight: '★ UX planning for a staff marketplace platform for working parents' },
+  { year: 2023, role: 'Senior Marketing & Design Specialist', company: 'Monde Nissin Singapore', desc: 'Currently leading brand identity, packaging, social media, and e-commerce for &SO and Popbebe. Integrating AI tools to cut concept turnaround by 30%.', highlight: '★ Built Popbebe\'s entire website in-house via Wix Studio' },
+];
+const START = 2010, END = 2026, RANGE = END - START;
+const track = document.getElementById('timelineTrack');
+const fill  = document.getElementById('timelineFill');
+const handle= document.getElementById('timelineHandle');
+const dots  = document.getElementById('timelineDots');
+const yrs   = document.getElementById('timelineYears');
+
+[2010,2013,2016,2019,2021,2023,2026].forEach(y => {
+  const s = document.createElement('span');
+  s.className = 'timeline-year-label';
+  s.textContent = y; s.dataset.year = y;
+  s.onclick = () => setYear(y);
+  yrs.appendChild(s);
+});
+EVENTS.forEach(ev => {
+  const d = document.createElement('div');
+  d.className = 'timeline-dot';
+  d.style.left = ((ev.year - START) / RANGE * 100) + '%';
+  d.onclick = () => setYear(ev.year);
+  dots.appendChild(d);
+});
+
+function nearest(y) {
+  return EVENTS.reduce((b, e) => Math.abs(e.year - y) < Math.abs(b.year - y) ? e : b);
+}
+function setYear(y) {
+  const pct = Math.max(0, Math.min(100, (y - START) / RANGE * 100));
+  fill.style.width = pct + '%';
+  handle.style.left = pct + '%';
+  document.querySelectorAll('.timeline-dot').forEach((d, i) => d.classList.toggle('active', EVENTS[i].year <= y));
+  document.querySelectorAll('.timeline-year-label').forEach(l => l.classList.toggle('active', parseInt(l.dataset.year) <= y));
+  const ev = nearest(y);
+  const card = document.getElementById('timelineCard');
+  card.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('tcYear').textContent    = ev.year;
+    document.getElementById('tcRole').textContent    = ev.role;
+    document.getElementById('tcCompany').textContent = ev.company;
+    document.getElementById('tcDesc').textContent    = ev.desc;
+    const hl = document.getElementById('tcHighlight');
+    hl.textContent = ev.highlight || '';
+    hl.style.display = ev.highlight ? 'inline-block' : 'none';
+    card.style.opacity = '1';
+    card.style.transition = 'opacity 0.25s';
+  }, 160);
+}
+
+let dragging = false;
+function pct(clientX) { const r = track.getBoundingClientRect(); return Math.max(0, Math.min(100, (clientX - r.left) / r.width * 100)); }
+function fromPct(p)   { return Math.round(START + (p / 100) * RANGE); }
+function onDrag(clientX) { setYear(fromPct(pct(clientX))); }
+
+handle.addEventListener('mousedown',  e => { dragging = true; e.preventDefault(); });
+window.addEventListener('mousemove',  e => { if (dragging) onDrag(e.clientX); });
+window.addEventListener('mouseup',    () => { dragging = false; });
+handle.addEventListener('touchstart', () => { dragging = true; }, { passive: true });
+window.addEventListener('touchmove',  e => { if (dragging) onDrag(e.touches[0].clientX); }, { passive: true });
+window.addEventListener('touchend',   () => { dragging = false; });
+track.addEventListener('click', e => onDrag(e.clientX));
+
+setYear(2010);
+</script>
+</body>
+</html>
